@@ -11,7 +11,9 @@ const UpdateProduct = () => {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/product/${id}`);
+        const response = await axios.get(
+          `https://us-central1-mern-app-d6055.cloudfunctions.net/api/product/${id}`
+        );
         console.log("Fetched product data:", response.data);
         setProductData(response.data);
       } catch (e) {
@@ -29,11 +31,11 @@ const UpdateProduct = () => {
   const handleUpdate = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/product/update/${id}`,
+        `https://us-central1-mern-app-d6055.cloudfunctions.net/api/product/update/${id}`,
         productData
       );
       console.log("Update Response:", response.data);
-      navigate("/");
+      navigate("/MERN-App");
     } catch (e) {
       console.error("Error updating product:", e);
     }
@@ -45,7 +47,11 @@ const UpdateProduct = () => {
         container
         alignContent="center"
         justifyContent="center"
-        style={{ backgroundColor: "#F4E5C0", minHeight: "100vh", paddingBottom: 80}}
+        style={{
+          backgroundColor: "#F4E5C0",
+          minHeight: "100vh",
+          paddingBottom: 80,
+        }}
       >
         <Paper
           elevation={3}
@@ -217,7 +223,7 @@ const UpdateProduct = () => {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/MERN-App")}
               >
                 Cancel
               </Button>

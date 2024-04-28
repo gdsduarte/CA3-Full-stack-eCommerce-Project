@@ -44,7 +44,7 @@ function App() {
       }}
     >
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/MERN-App" element={<HomePage />} />
         <Route path="/login" element={<AuthPage />} />
         <Route path="/cart" element={<CartPage />} />
         {/* protected views*/}

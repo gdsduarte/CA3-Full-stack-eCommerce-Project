@@ -25,7 +25,7 @@ const NavBar = () => {
   }, [token]);
 
   const goToHome = () => {
-    navigate("/");
+    navigate("/MERN-App");
   };
 
   const goToAddProduct = () => {
@@ -41,7 +41,7 @@ const NavBar = () => {
     setIsAdmin(null);
     setToken(null);
     authContext.logout();
-    navigate("/");
+    navigate("/MERN-App");
     window.location.reload();
   };
 

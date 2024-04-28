@@ -3,7 +3,7 @@ const { Product } = require("../Models/products");
 const router = express.Router();
 
 // Get all products
-router.get("/", async (req, res) => {
+router.get("/", async(req, res) => {
   try {
     const productList = await Product.find();
     res.json(productList);
@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 });
 
 // Get a single product by id
-router.get("/:id", async (req, res) => {
+router.get("/:id", async(req, res) => {
   try {
     const product = await Product.findById(req.params.id);
     if (!product) {
@@ -26,7 +26,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Post new product
-router.post("/create", async (req, res) => {
+router.post("/create", async(req, res) => {
   try {
     const newProduct = new Product(req.body);
     const savedProduct = await newProduct.save();
@@ -39,13 +39,13 @@ router.post("/create", async (req, res) => {
 });
 
 // Update a product
-router.put("/update/:id", async (req, res) => {
+router.put("/update/:id", async(req, res) => {
   const updates = req.body;
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
       req.params.id,
       { $set: updates },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     );
     if (!updatedProduct) {
       return res.status(404).send("Product not found.");
@@ -59,7 +59,7 @@ router.put("/update/:id", async (req, res) => {
 });
 
 // Delete a product
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/:id", async(req, res) => {
   try {
     const deletedProduct = await Product.findByIdAndDelete(req.params.id);
     if (!deletedProduct) {

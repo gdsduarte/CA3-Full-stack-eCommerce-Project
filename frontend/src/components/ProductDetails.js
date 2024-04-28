@@ -39,12 +39,14 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/product/${id}`);
+        const url = `https://us-central1-mern-app-d6055.cloudfunctions.net/api/product/${id}`;
+        const response = await axios.get(url);
         setProduct(response.data);
       } catch (error) {
-        console.log("Error fetching product details:", error);
+        console.error("Error fetching product details:", error);
       }
     };
+
     fetchProduct();
   }, [id]);
 
@@ -71,11 +73,11 @@ const ProductDetails = () => {
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/product/delete/${id}`
+        `https://us-central1-mern-app-d6055.cloudfunctions.net/api/product/delete/${id}`
       );
       if (response.status === 200) {
         setVisible(false);
-        navigate("/");
+        navigate("/MERN-App");
       }
     } catch (e) {
       console.error("Error deleting product:", e);
@@ -96,7 +98,11 @@ const ProductDetails = () => {
       <Stack sx={{ backgroundColor: "#F4E5C0" }}>
         <br />
       </Stack>
-      <Grid container justifyContent="center" sx={{ backgroundColor: "#F4E5C0", minHeight: "100vh", }}>
+      <Grid
+        container
+        justifyContent="center"
+        sx={{ backgroundColor: "#F4E5C0", minHeight: "100vh" }}
+      >
         <Paper
           elevation={3}
           style={{

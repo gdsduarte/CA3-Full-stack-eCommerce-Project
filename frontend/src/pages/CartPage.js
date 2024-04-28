@@ -101,7 +101,7 @@ const CartPage = () => {
   }, [total, addedItems, totalAmount]);
 
   const goBack = () => {
-    navigate("/");
+    navigate("/MERN-App");
   };
 
   const cartItemRemoveHandler = (id) => {
@@ -120,8 +120,8 @@ const CartPage = () => {
 
   const handleFormInput = (e) => {
     const { name, value } = e.target;
-    const newErrors = {...errors, [name]: validateField(name, value)};
-    setCheckoutForm(prevState => ({ ...prevState, [name]: value }));
+    const newErrors = { ...errors, [name]: validateField(name, value) };
+    setCheckoutForm((prevState) => ({ ...prevState, [name]: value }));
     setErrors(newErrors);
   };
 
@@ -131,7 +131,7 @@ const CartPage = () => {
       return acc;
     }, {});
     setErrors(newErrors);
-    return Object.values(newErrors).every(x => x === "");
+    return Object.values(newErrors).every((x) => x === "");
   };
 
   const handleCheckout = async () => {
@@ -179,9 +179,12 @@ const CartPage = () => {
       createdDate: new Date(),
     };
     try {
-      const response = await axios.post("http://localhost:5000/order/create", {
-        data: order,
-      });
+      const response = await axios.post(
+        "https://us-central1-mern-app-d6055.cloudfunctions.net/api/order/create",
+        {
+          data: order,
+        }
+      );
       console.log(response.data);
       if (response.data === "Order saved to the database!") {
         setConfirmShow(false);

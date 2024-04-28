@@ -54,7 +54,7 @@ const ProductCard = ({ product }) => {
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/product/delete/${id}`
+        `https://us-central1-mern-app-d6055.cloudfunctions.net/api/product/delete/${id}`
       );
       if (response.status === 200) {
         setVisible(false);

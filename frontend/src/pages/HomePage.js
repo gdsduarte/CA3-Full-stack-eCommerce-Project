@@ -61,7 +61,9 @@ const HomePage = () => {
 
   const getProduct = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/product");
+      const response = await axios.get(
+        "https://us-central1-mern-app-d6055.cloudfunctions.net/api/product"
+      );
       setProductList(response.data);
       setOriginalData(response.data);
 

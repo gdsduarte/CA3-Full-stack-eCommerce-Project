@@ -33,7 +33,10 @@ const OrdersPage = () => {
   const getOrders = async () => {
     const userId = localStorage.getItem("userId");
     try {
-      const response = await axios.get("http://localhost:5000/order/" + userId);
+      const response = await axios.get(
+        "https://us-central1-mern-app-d6055.cloudfunctions.net/api/order/" +
+          userId
+      );
       setOrders(response.data);
       console.log(response.data);
     } catch (e) {

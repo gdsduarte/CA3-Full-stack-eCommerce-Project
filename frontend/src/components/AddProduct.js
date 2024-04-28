@@ -43,11 +43,11 @@ const AddProduct = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/product/create",
+        "https://us-central1-mern-app-d6055.cloudfunctions.net/api/product/create",
         productData
       );
       if (response.status === 201) {
-        navigate("/");
+        navigate("/MERN-App");
       }
     } catch (e) {
       console.error("Error when attempting to save product:", e);
@@ -60,7 +60,11 @@ const AddProduct = () => {
         container
         alignContent="center"
         justifyContent="center"
-        style={{ backgroundColor: "#F4E5C0", minHeight: "100vh", paddingBottom: 80}}
+        style={{
+          backgroundColor: "#F4E5C0",
+          minHeight: "100vh",
+          paddingBottom: 80,
+        }}
       >
         <Paper
           elevation={3}
@@ -247,7 +251,7 @@ const AddProduct = () => {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/MERN-App")}
               >
                 Cancel
               </Button>

@@ -40,9 +40,12 @@ const LoginForm = (props) => {
 
     if (validateForm()) {
       try {
-        const response = await axios.post("http://localhost:5000/users/login", {
-          data: loginData,
-        });
+        const response = await axios.post(
+          "https://us-central1-mern-app-d6055.cloudfunctions.net/api/users/login",
+          {
+            data: loginData,
+          }
+        );
         console.log(response.data);
         if (response) {
           if (Object.keys(props)[0] !== "closeForm") {
@@ -55,7 +58,7 @@ const LoginForm = (props) => {
             if (response.data.isAdmin === true) {
               navigate("/admin");
             } else {
-              navigate("/");
+              navigate("/MERN-App");
             }
           } else {
             authContext.login(

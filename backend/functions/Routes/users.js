@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const { User } = require("../Models/user");
 const router = express.Router();
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", async(req, res) => {
   try {
     const user_id = req.params.id;
     const user = await User.findById(user_id);
@@ -16,7 +16,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/register", async (req, res) => {
+router.post("/register", async(req, res) => {
   try {
     const { username, email, password, isAdmin } = req.body.data;
     const userExists = await User.findOne({ email });
@@ -49,7 +49,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.post("/login", async (req, res) => {
+router.post("/login", async(req, res) => {
   try {
     const { email, password } = req.body.data;
     const user = await User.findOne({ email });

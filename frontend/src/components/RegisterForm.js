@@ -3,7 +3,6 @@ import { Paper, TextField, Grid, Button, Box } from "@mui/material";
 import { AuthContext } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Checkbox, FormControlLabel } from "@mui/material";
 
 const RegisterForm = (props) => {
   const authContext = React.useContext(AuthContext);
@@ -52,7 +51,7 @@ const RegisterForm = (props) => {
     if (validateForm()) {
       try {
         const response = await axios.post(
-          "http://localhost:5000/users/register",
+          "https://us-central1-mern-app-d6055.cloudfunctions.net/api/users/register",
           {
             data: userData,
           }
@@ -68,7 +67,7 @@ const RegisterForm = (props) => {
             if (response.data.isAdmin === true) {
               navigate("/admin");
             } else {
-              navigate("/");
+              navigate("/MERN-App");
             }
           } else {
             authContext.login(
@@ -85,11 +84,11 @@ const RegisterForm = (props) => {
     }
   };
 
-  const handleIsAdmin = (e) => {
+  /* const handleIsAdmin = (e) => {
     console.log(e.target.value);
     console.log(checked);
     setChecked(!checked);
-  };
+  }; */
 
   return (
     <React.Fragment>
